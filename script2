@@ -1,0 +1,44 @@
+#!/bin/sh
+#setup the menumaker
+cd ~/openboxfig/menumaker 
+./configure
+sudo make install
+mmaker openbox -f  -t xterm
+#copying some things
+cd ~/openboxfig
+cp -r openbox ~/.config/openbox
+cp -r tint2 ~/.config/tint2
+# GTK theme
+unzip gtk-master.zip
+mkdir ~/.themes/
+cp -r~/openboxfig/gtk-master ~/.themes/dracula
+sudo cp -r gtk-master /usr/share/themes/
+echo run the following
+echo sudo cp -r gtk-master /usr/share/themes/
+# fonts
+unzip HackTTF.zip
+cd ttf
+mkdir ~/.fonts/
+mv *.ttf ~/.fonts/
+cd ~/openboxfig
+# termite stuff
+mkdir ~/.config/termite/
+cd ~/.config/termite/
+cp ~/openboxfig/Tconfig ~/.config/termite/config
+cd ~/openboxfig
+#alacritty (the working terminal)
+mkdir ~/.config/alacritty
+cp ~/openboxfig/alacritty.yml ~/.config/alacritty/alacritty.yml
+#picom plus others
+picom --config ~/.config/picom/picom.conf
+cp ~/openboxfig/picom.conf ~/.config/picom/picom.conf
+#redshift (nightlight)
+sudo pacman -S redshift
+#installs aether lightdm theme (optional)
+#yay -S lightdm-webkit-theme-aether
+echo -----------------------------
+echo -----------------------------
+echo -----------------------------
+echo if you want to remove redshift
+echo run the following command
+echo sudo pacman -Rcns redshift
